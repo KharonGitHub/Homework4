@@ -74,6 +74,20 @@ struct Textures
 
 };
 
+struct Objects
+{
+	enum class ObjT { Ship, Aster};
+	ObjT type;
+	Sprite spr;
+
+	void Update(const Vector2u& screenSz);
+	void Render(RenderWindow& window);
+
+	void LoadShip(RenderWindow& window, Texture& tex);
+	void InitRock(RenderWindow& window, Texture& tex);
+};
+
+
 struct ShipST
 {
 	sf::Sprite shipSprite;

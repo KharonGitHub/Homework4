@@ -15,7 +15,7 @@ int main()
 {
 
 	// Create the main window
-	RenderWindow window(VideoMode(GC::SCREEN_RES.x, GC::SCREEN_RES.y), "Homework 3");
+	RenderWindow window(VideoMode(GC::SCREEN_RES.x, GC::SCREEN_RES.y), "Homework 4");
 
 	Textures tex;
 	tex.LoadTextures();
@@ -25,6 +25,9 @@ int main()
 
 	Asteroid aster;
 	aster.LoadAster(window);
+
+	Objects typeObj;
+
 
 	Clock clock;
 

@@ -62,7 +62,7 @@ void Textures::DrawBgnd(float elapsed, sf::RenderWindow& window)
 
 void Asteroid::LoadAster(sf::RenderWindow& window)
 {
-	Texture asterTex;
+	static Texture asterTex;
 	if (!asterTex.loadFromFile("data/asteroid.png"))
 	{
 		assert(false);
@@ -74,7 +74,7 @@ void Asteroid::LoadAster(sf::RenderWindow& window)
 	IntRect texR(0, 0, 96, 96);
 	asterSpr.setTextureRect(texR);
 	asterSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
-	asterSpr.setScale(0.1f, 0.1f);
+	asterSpr.setScale(0.5f, 0.5f);
 	asterSpr.setRotation(90);
 	asterSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
 }
