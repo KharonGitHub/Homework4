@@ -20,14 +20,14 @@ int main()
 	Textures tex;
 	tex.LoadTextures();
 
-	ShipST ship;
-	ship.LoadShip(window);
 
-	Asteroid aster;
-	aster.LoadAster(window);
+	ObjectST ship;
+	ship.type = ObjectST::ObjT::Ship;
+	ship.LoadSpr(window);
 
-	vector<ObjectST> objects;
-	objects.LoadSpr(window);
+	ObjectST aster;
+	aster.type = ObjectST::ObjT::Aster;
+	aster.LoadSpr(window);
 
 
 	Clock clock;
@@ -57,13 +57,13 @@ int main()
 		//Draw background
 		tex.DrawBgnd(elapsed, window);
 
-		//Move ship
-		ship.MoveShip(window, elapsed);
-		//draw ship
-		ship.DrawShip(window);
+		//Ship
+		ship.Update(window, elapsed);
+		ship.Draw(window);
 
 		//Aster
-		aster.DrawAster(window);
+		aster.Update(window, elapsed);
+		aster.Draw(window);
 
 		// Update the window
 		window.display();

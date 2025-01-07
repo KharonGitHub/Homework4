@@ -61,37 +61,47 @@ void Textures::DrawBgnd(float elapsed, sf::RenderWindow& window)
 
 void ObjectST::LoadSpr(sf::RenderWindow& window)
 {
-	//Draw Aster
-	static Texture asterTex;
-	if (!asterTex.loadFromFile("data/asteroid.png"))
-	{
-		assert(false);
-	}
-
-
-	asterSpr.setTexture(asterTex);
-	IntRect texR(0, 0, 96, 96);
-	asterSpr.setTextureRect(texR);
-	asterSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
-	asterSpr.setScale(0.5f, 0.5f);
-	asterSpr.setRotation(90);
-	asterSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
-
-
-	//Draw Ship
+	//init Ship
 	static Texture shipTex;
 	if (!shipTex.loadFromFile("data/ship.png"))
 	{
 		assert(false);
 	}
-
 	shipSpr.setTexture(shipTex);
-	IntRect texR = shipSpr.getTextureRect();
-	shipSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
-	shipSpr.setScale(0.1f, 0.1f);
-	shipSpr.setRotation(90);
-	shipSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
+	sf::IntRect texSR = shipSpr.getTextureRect();
 
+	//init Aster
+	static Texture asterTex;
+	if (!asterTex.loadFromFile("data/asteroid.png"))
+	{
+		assert(false);
+	}
+	asterSpr.setTexture(asterTex);
+	sf::IntRect texAR(0, 0, 96, 96);
+
+	switch (type)
+	{
+	case ObjectST::ObjT::Ship:
+
+		shipSpr.setOrigin(texSR.width / 2.f, texSR.height / 2.f);
+		shipSpr.setScale(0.1f, 0.1f);
+		shipSpr.setRotation(90);
+		shipSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
+
+		break;
+
+	case ObjectST::ObjT::Aster:
+
+		asterSpr.setTextureRect(texAR);
+		asterSpr.setOrigin(texAR.width / 2.f, texAR.height / 2.f);
+		asterSpr.setScale(0.5f, 0.5f);
+		asterSpr.setRotation(90);
+		asterSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
+
+		break;
+	default:
+		break;
+	}
 }
 
 void ObjectST::Update(sf::RenderWindow& window, float elapsed)
@@ -128,6 +138,15 @@ void ObjectST::Update(sf::RenderWindow& window, float elapsed)
 
 void ObjectST::Draw(sf::RenderWindow& window)
 {
-	window.draw(asterSpr);
-	window.draw(shipSpr);
+	switch (type)
+	{
+	case ObjectST::ObjT::Ship:
+		window.draw(shipSpr);
+		break;
+	case ObjectST::ObjT::Aster:
+		window.draw(asterSpr);
+		break;
+	default:
+		break;
+	}
 }

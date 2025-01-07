@@ -78,13 +78,15 @@ struct ObjectST
 {
 	enum class ObjT { Ship, Aster};
 	ObjT type;
-	Sprite shipSpr;
-	Sprite asterSpr;
+	sf::Sprite shipSpr;
+	sf::Sprite asterSpr;
 	const float SPEED = 250.f;
 
-	void LoadSpr(RenderWindow& window);
+	void LoadSpr(sf::RenderWindow& window);
+
 	void Update(sf::RenderWindow& window, float elapsed);
-	void Draw(RenderWindow& window);
+
+	void Draw(sf::RenderWindow& window);
 };
 
 /*
