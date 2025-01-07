@@ -26,7 +26,8 @@ int main()
 	Asteroid aster;
 	aster.LoadAster(window);
 
-	Objects typeObj;
+	vector<ObjectST> objects;
+	objects.LoadSpr(window);
 
 
 	Clock clock;

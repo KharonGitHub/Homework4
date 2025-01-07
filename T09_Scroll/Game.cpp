@@ -59,9 +59,9 @@ void Textures::DrawBgnd(float elapsed, sf::RenderWindow& window)
 
 
 
-
-void Asteroid::LoadAster(sf::RenderWindow& window)
+void ObjectST::LoadSpr(sf::RenderWindow& window)
 {
+	//Draw Aster
 	static Texture asterTex;
 	if (!asterTex.loadFromFile("data/asteroid.png"))
 	{
@@ -69,7 +69,6 @@ void Asteroid::LoadAster(sf::RenderWindow& window)
 	}
 
 
-	//Draw Aster
 	asterSpr.setTexture(asterTex);
 	IntRect texR(0, 0, 96, 96);
 	asterSpr.setTextureRect(texR);
@@ -77,43 +76,28 @@ void Asteroid::LoadAster(sf::RenderWindow& window)
 	asterSpr.setScale(0.5f, 0.5f);
 	asterSpr.setRotation(90);
 	asterSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
-}
-
-void Asteroid::MoveAster(sf::RenderWindow& window, float elapsed)
-{
-
-}
 
 
-void Asteroid::DrawAster(sf::RenderWindow& window)
-{
-	window.draw(asterSpr);
-}
-
-
-
-
-void ShipST::LoadShip(sf::RenderWindow& window)
-{
+	//Draw Ship
 	static Texture shipTex;
 	if (!shipTex.loadFromFile("data/ship.png"))
 	{
 		assert(false);
 	}
 
-	//Draw Ship
-	shipSprite.setTexture(shipTex);
-	IntRect texR = shipSprite.getTextureRect();
-	shipSprite.setOrigin(texR.width / 2.f, texR.height / 2.f);
-	shipSprite.setScale(0.1f, 0.1f);
-	shipSprite.setRotation(90);
-	shipSprite.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
+	shipSpr.setTexture(shipTex);
+	IntRect texR = shipSpr.getTextureRect();
+	shipSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
+	shipSpr.setScale(0.1f, 0.1f);
+	shipSpr.setRotation(90);
+	shipSpr.setPosition(window.getSize().x * 0.05f, window.getSize().y / 2.f);
+
 }
 
-void ShipST::MoveShip(sf::RenderWindow& window, float elapsed)
+void ObjectST::Update(sf::RenderWindow& window, float elapsed)
 {
 	Vector2u screenSz = window.getSize();
-	Vector2f pos = shipSprite.getPosition();
+	Vector2f pos = shipSpr.getPosition();
 
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 
@@ -138,10 +122,12 @@ void ShipST::MoveShip(sf::RenderWindow& window, float elapsed)
 			pos.x += SPEED * elapsed;
 	}
 
-	shipSprite.setPosition(pos);
+	shipSpr.setPosition(pos);
 }
 
-void ShipST::DrawShip(sf::RenderWindow& window)
+
+void ObjectST::Draw(sf::RenderWindow& window)
 {
-	window.draw(shipSprite);
+	window.draw(asterSpr);
+	window.draw(shipSpr);
 }

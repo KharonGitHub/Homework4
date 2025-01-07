@@ -74,45 +74,17 @@ struct Textures
 
 };
 
-struct Objects
+struct ObjectST
 {
 	enum class ObjT { Ship, Aster};
 	ObjT type;
-	Sprite spr;
-
-	void Update(const Vector2u& screenSz);
-	void Render(RenderWindow& window);
-
-	void LoadShip(RenderWindow& window, Texture& tex);
-	void InitRock(RenderWindow& window, Texture& tex);
-};
-
-
-struct ShipST
-{
-	sf::Sprite shipSprite;
-
+	Sprite shipSpr;
+	Sprite asterSpr;
 	const float SPEED = 250.f;
 
-	//Loads and inicializes the ship
-	void LoadShip(sf::RenderWindow& window);
-
-	//Updates the ship
-	void MoveShip(sf::RenderWindow& window, float elapsed);
-
-	//Renders the ship sprite
-	void DrawShip(sf::RenderWindow& window);
-};
-
-struct Asteroid
-{
-	sf::Sprite asterSpr;
-
-	void LoadAster(sf::RenderWindow& window);
-
-	void MoveAster(sf::RenderWindow& window, float elapsed);
-
-	void DrawAster(sf::RenderWindow& window);
+	void LoadSpr(RenderWindow& window);
+	void Update(sf::RenderWindow& window, float elapsed);
+	void Draw(RenderWindow& window);
 };
 
 /*
@@ -124,7 +96,7 @@ the name of the title screen music track, etc.
 namespace GC
 {
 	//game play related constants to tweak
-	const Dim2Di SCREEN_RES{ 1920,1080 };
+	const Dim2Di SCREEN_RES{ 1280,720 };
 	//background
 	const float BACK_SPEED = 10;		//start speed for scrolling
 	const float BACK_LAYER_SPEEDINC = 7;//each layer is a bit faster towards the front
