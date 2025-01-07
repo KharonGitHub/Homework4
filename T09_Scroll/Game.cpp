@@ -107,32 +107,34 @@ void ObjectST::LoadSpr(sf::RenderWindow& window)
 void ObjectST::Update(sf::RenderWindow& window, float elapsed)
 {
 	Vector2u screenSz = window.getSize();
-	Vector2f pos = shipSpr.getPosition();
-
+	Vector2f shipPos = shipSpr.getPosition();
+	Vector2f asterPos = asterSpr.getPosition();
+	
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 
 	{
-		if (pos.y > (screenSz.y * 0.05f))
-			pos.y -= SPEED * elapsed;
+		if (shipPos.y > (screenSz.y * 0.05f))
+			shipPos.y -= shipSpeed * elapsed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Down))
 	{
-		if (pos.y < (screenSz.y * 0.95f))
-			pos.y += SPEED * elapsed;
+		if (shipPos.y < (screenSz.y * 0.95f))
+			shipPos.y += shipSpeed * elapsed;
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
-		if (pos.x > (screenSz.x * 0.05f))
-			pos.x -= SPEED * elapsed;
+		if (shipPos.x > (screenSz.x * 0.05f))
+			shipPos.x -= shipSpeed * elapsed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
-		if (pos.x < (screenSz.x * 0.95f))
-			pos.x += SPEED * elapsed;
+		if (shipPos.x < (screenSz.x * 0.95f))
+			shipPos.x += shipSpeed * elapsed;
 	}
 
-	shipSpr.setPosition(pos);
+	shipSpr.setPosition(shipPos);
+	asterSpr.setPosition(asterPos);
 }
 
 

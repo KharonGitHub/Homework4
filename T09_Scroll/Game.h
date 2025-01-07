@@ -22,6 +22,7 @@ struct Text
 };
 */
 
+
 //all the textures we need
 struct Textures
 {
@@ -80,13 +81,17 @@ struct ObjectST
 	ObjT type;
 	sf::Sprite shipSpr;
 	sf::Sprite asterSpr;
-	const float SPEED = 250.f;
+	const float shipSpeed = 250.f;
+	float asterSpeed = 300.f;
+	float paralaxScale = 10.f;
+	const float minRad = 30;
 
 	void LoadSpr(sf::RenderWindow& window);
 
 	void Update(sf::RenderWindow& window, float elapsed);
 
 	void Draw(sf::RenderWindow& window);
+
 };
 
 /*
